@@ -79,13 +79,6 @@ p {
     margin-bottom: 25px;
 }
 
-.botoes-linha {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
 button {
     background-color: var(--marrom);
     color: white;
@@ -98,24 +91,15 @@ button {
     transition: all 0.2s ease;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 10px rgba(139, 90, 43, 0.3);
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
 }
 
 button:hover {
     background-color: #6b4320;
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(139, 90, 43, 0.4);
-}
-
-button.secundario {
-    background-color: transparent;
-    color: var(--marrom);
-    border: 2px solid var(--marrom);
-    box-shadow: none;
-}
-
-button.secundario:hover {
-    background-color: var(--marrom);
-    color: white;
 }
 
 button.voltar {
@@ -151,6 +135,7 @@ input, select {
     background-color: #fdfaf6;
     transition: border 0.2s;
     outline: none;
+    width: 100%;
 }
 
 input:focus, select:focus {
@@ -164,7 +149,6 @@ input[readonly] {
     font-weight: 500;
 }
 
-/* Área de busca de livros */
 .busca-livros {
     margin: 5px 0 10px;
     text-align: left;
@@ -228,12 +212,6 @@ input[readonly] {
 #info-devolucao span {
     font-weight: 700;
     color: #3e2e1c;
-}
-
-hr {
-    border: none;
-    border-top: 1px solid #ddd2be;
-    margin: 20px 0;
 }
 
 @media (max-width: 480px) {
