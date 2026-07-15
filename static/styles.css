@@ -15,11 +15,8 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 body {
-    background-image: url('fundo.jpg');
-    /* ou use o caminho absoluto a partir da raiz do projeto: */
-    /* background-image: url('../static/fundo.jpg'); */
+    background-image: url('../src/fundo.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -32,7 +29,6 @@ body {
     position: relative;
 }
 
-/* Overlay escuro para melhorar legibilidade */
 body::before {
     content: '';
     position: fixed;
@@ -50,7 +46,7 @@ body::before {
     box-shadow: var(--sombra);
     padding: 40px 30px;
     width: 100%;
-    max-width: 550px;
+    max-width: 750px;
     text-align: center;
     position: relative;
     z-index: 1;
@@ -147,7 +143,7 @@ label {
 }
 
 input, select {
-    padding: 12px 16px;
+    padding: 14px 18px;
     border: 2px solid #d6c9b5;
     border-radius: 8px;
     font-size: 1rem;
@@ -256,7 +252,164 @@ input[readonly] {
         font-size: 1.8rem;
     }
     button {
-        padding: 12px 20px;
+        padding: 16px 32px;
         font-size: 0.9rem;
+    }
+}
+
+/* ===== LAYOUT DO PEDIDO (form + info lado a lado) ===== */
+.pedido-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.form-pedido {
+    flex: 1.5;
+    min-width: 0;
+}
+
+.info-livro {
+    display: none; /* oculto por padrão */
+    background: #f9f5ed;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid var(--marrom);
+    min-height: 200px;
+    text-align: left;
+    flex: 0.8;
+}
+
+.info-livro h3 {
+    margin-top: 0;
+    color: var(--marrom-escuro);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.info-livro p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    color: #4A3F35;
+}
+
+.info-livro strong {
+    color: var(--marrom);
+}
+
+.info-placeholder {
+    color: #8b7a6b;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Esconde placeholder quando houver dados */
+.info-livro.com-dados {
+    display: block;
+}
+
+/* ===== CAPA FLUTUANTE ===== */
+.capa-flutuante {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 280px;
+    z-index: 10;
+    display: none;
+    text-align: center;
+}
+
+.tela#pedido.ativa ~ .capa-flutuante {
+    display: block;
+}
+
+.capa-flutuante img {
+    max-width: 100%;
+    max-height: 550px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    display: none;
+}
+
+.capa-flutuante .placeholder-capa {
+    color: #5e503a;
+    font-style: italic;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .capa-flutuante {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        margin-top: 20px;
+        display: none;
+    }
+    .tela#pedido.ativa ~ .capa-flutuante {
+        display: block;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+    }
+}
+
+/* Mostra a capa apenas quando a tela de pedido estiver ativa */
+.tela#pedido.ativa ~ .capa-flutuante {
+    display: block;
+}
+
+.capa-flutuante img {
+    max-width: 100%;
+    max-height: 450px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    display: none; /* controlado pelo JS */
+}
+
+.capa-flutuante .placeholder-capa {
+    color: #5e503a;
+    font-style: italic;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .pedido-wrapper {
+        flex-direction: column;
+    }
+    .info-livro {
+        width: 100%;
+        min-height: auto;
+    }
+    .capa-flutuante {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        margin-bottom: 20px;
+        display: none;
+    }
+    .tela#pedido.ativa ~ .capa-flutuante {
+        display: block;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
     }
 }

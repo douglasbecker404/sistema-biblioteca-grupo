@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca – Aluguel de Livros</title>
     <link rel="stylesheet" href="../static/styles.css">
-    <link rel="stylesheet" href="../src/fundo.jpg">
     <style>
         /* Estilos adicionais para a tela de histórico */
         .tabela-historico {
@@ -89,30 +88,46 @@
             <button class="voltar" onclick="mostrar('aluguel-opcao')">↩ Voltar</button>
         </div>
 
-        <!-- Tela: Pedido de aluguel -->
+        <!-- Tela: Pedido de aluguel (com informações do livro) -->
         <div id="pedido" class="tela">
             <h2>Realizar Pedido</h2>
             <div id="sem-clientes" style="display: none; color: #8b7a6b; margin-bottom: 20px;">
                 ⚠️ Nenhum cliente cadastrado. Cadastre um novo cliente primeiro.
             </div>
-            <form id="form-pedido" onsubmit="event.preventDefault(); confirmarAluguel();">
-                <label for="cliente-select">Cliente</label>
-                <select id="cliente-select" required>
-                    <option value="">Selecione o cliente...</option>
-                </select>
-                <label for="livro">Nome do Livro</label>
-                <input type="text" id="livro" placeholder="Digite o título do livro" required>
-                <div class="busca-livros">
-                    <label for="filtro-livro">🔎 Filtrar lista de livros populares</label>
-                    <input type="text" id="filtro-livro" placeholder="Pesquise na lista..." oninput="filtrarLivros()">
-                    <div id="lista-livros" class="lista-livros"></div>
+            
+            <div class="pedido-wrapper">
+                <!-- Formulário (esquerda) -->
+                <form id="form-pedido" class="form-pedido" onsubmit="event.preventDefault(); confirmarAluguel();">
+                    <label for="cliente-select">Cliente</label>
+                    <select id="cliente-select" required>
+                        <option value="">Selecione o cliente...</option>
+                    </select>
+                    <label for="livro">Nome do Livro</label>
+                    <input type="text" id="livro" placeholder="Digite o título do livro" required>
+                    <div class="busca-livros">
+                        <label for="filtro-livro">🔎 Filtrar lista de livros populares</label>
+                        <input type="text" id="filtro-livro" placeholder="Pesquise na lista..." oninput="filtrarLivros()">
+                        <div id="lista-livros" class="lista-livros"></div>
+                    </div>
+                    <label for="data-locacao">Data da Locação</label>
+                    <input type="date" id="data-locacao" required onchange="calcularDevolucao()">
+                    <label for="data-devolucao">Data de Devolução (7 dias)</label>
+                    <input type="text" id="data-devolucao" readonly placeholder="Automático ao selecionar data">
+                    <button type="submit" id="btn-confirmar-aluguel">✅ Confirmar Aluguel</button>
+                </form>
+
+                <!-- Painel de informações do livro (direita, dentro do container) -->
+                <div id="info-livro" class="info-livro">
+                    <h3>📖 Informações</h3>
+                    <div id="detalhes-livro">
+                        <p><strong>Autor:</strong> <span id="info-autor">—</span></p>
+                        <p><strong>Ano:</strong> <span id="info-ano">—</span></p>
+                        <p><strong>Editora:</strong> <span id="info-editora">—</span></p>
+                    </div>
+                    <p id="info-placeholder" class="info-placeholder">Selecione um livro para ver os detalhes.</p>
                 </div>
-                <label for="data-locacao">Data da Locação</label>
-                <input type="date" id="data-locacao" required onchange="calcularDevolucao()">
-                <label for="data-devolucao">Data de Devolução (7 dias)</label>
-                <input type="text" id="data-devolucao" readonly placeholder="Automático ao selecionar data">
-                <button type="submit" id="btn-confirmar-aluguel">✅ Confirmar Aluguel</button>
-            </form>
+            </div>
+
             <button class="voltar" onclick="mostrar('inicio')">↩ Cancelar</button>
         </div>
 
@@ -143,7 +158,14 @@
             </div>
             <button class="voltar" onclick="mostrar('inicio')">↩ Voltar ao início</button>
         </div>
-    </div>
+
+        <!-- ===== CAPA FLUTUANTE (DENTRO DO CONTAINER) ===== -->
+        <div id="capa-flutuante" class="capa-flutuante">
+            <img id="capa-livro" src="" alt="Capa do livro" style="display: none;">
+            <p id="placeholder-capa" class="placeholder-capa">📚 Capa</p>
+        </div>
+
+    </div> <!-- fim .container -->
 
     <script src="https://unpkg.com/dexie@3.2.3/dist/dexie.js"></script>
     <script src="../static/script.js"></script>
