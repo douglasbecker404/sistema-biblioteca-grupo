@@ -50,7 +50,7 @@
 
         <!-- ===== TELA DE LOGIN (adicionada) ===== -->
         <div id="login" class="tela ativa">
-            <h2>🔐 Acesso Restrito</h2>
+            <h2>Acesso Restrito</h2>
             <form id="form-login" onsubmit="event.preventDefault(); fazerLogin();">
                 <label for="usuario">Usuário</label>
                 <input type="text" id="usuario" placeholder="Digite seu usuário" required>
@@ -65,14 +65,14 @@
 
         <!-- Tela Inicial (agora sem classe "ativa" por padrão) -->
         <div id="inicio" class="tela">
-            <h1>📚 Biblioteca Central</h1>
+            <h1>Biblioteca Central</h1>
             <p>Bem-vindo(a), <span id="nome-usuario"></span>!</p>
             <div class="botoes">
-                <button onclick="mostrar('aluguel-opcao')">📖 Alugar Livro</button>
-                <button onclick="mostrar('devolucao')">📥 Devolver Livro</button>
-                <button onclick="mostrar('historico')">📋 Ver Aluguéis</button>
+                <button onclick="mostrar('aluguel-opcao')">Alugar Livro</button>
+                <button onclick="mostrar('devolucao')">Devolver Livro</button>
+                <button onclick="mostrar('historico')">Ver Aluguéis</button>
             </div>
-            <button class="voltar" onclick="logout()" style="margin-top: 20px;">🚪 Sair</button>
+            <button class="voltar" onclick="logout()" style="margin-top: 20px;">Sair</button>
         </div>
 
         <!-- Tela: Novo ou Antigo? -->
@@ -80,8 +80,8 @@
             <h2>Novo Aluguel</h2>
             <p>O cliente já possui cadastro?</p>
             <div class="botoes">
-                <button onclick="mostrar('cadastro-novo')">✨ Cliente Novo</button>
-                <button onclick="prepararPedido()">👤 Cliente Antigo</button>
+                <button onclick="mostrar('cadastro-novo')">Cliente Novo</button>
+                <button onclick="prepararPedido()">Cliente Antigo</button>
                 <button class="voltar" onclick="mostrar('inicio')">↩ Voltar</button>
             </div>
         </div>
@@ -108,7 +108,7 @@
         <div id="pedido" class="tela">
             <h2>Realizar Pedido</h2>
             <div id="sem-clientes" style="display: none; color: #8b7a6b; margin-bottom: 20px;">
-                ⚠️ Nenhum cliente cadastrado. Cadastre um novo cliente primeiro.
+                Nenhum cliente cadastrado. Cadastre um novo cliente primeiro.
             </div>
 
             <div class="pedido-wrapper">
@@ -120,7 +120,7 @@
                     <label for="livro">Nome do Livro</label>
                     <input type="text" id="livro" placeholder="Digite o título do livro" required>
                     <div class="busca-livros">
-                        <label for="filtro-livro">🔎 Filtrar lista de livros populares</label>
+                        <label for="filtro-livro">Filtrar lista de livros populares</label>
                         <input type="text" id="filtro-livro" placeholder="Pesquise na lista..." oninput="filtrarLivros()">
                         <div id="lista-livros" class="lista-livros"></div>
                     </div>
@@ -132,7 +132,7 @@
                 </form>
 
                 <div id="info-livro" class="info-livro">
-                    <h3>📖 Informações</h3>
+                    <h3>Informações</h3>
                     <div id="detalhes-livro">
                         <p><strong>Autor:</strong> <span id="info-autor">—</span></p>
                         <p><strong>Ano:</strong> <span id="info-ano">—</span></p>
@@ -157,7 +157,7 @@
                 <div id="opcoes-clientes" style="text-align: left;"></div>
             </div>
             <div id="info-devolucao" style="display: none;">
-                <p>📘 Livro alugado: <span id="livro-alugado"></span></p>
+                <p>Livro alugado: <span id="livro-alugado"></span></p>
                 <button onclick="devolver()">📦 Confirmar Devolução</button>
             </div>
             <button class="voltar" onclick="mostrar('inicio')" style="margin-top: 20px;">↩ Voltar ao início</button>
@@ -165,7 +165,7 @@
 
         <!-- Tela: Histórico de Aluguéis -->
         <div id="historico" class="tela">
-            <h2>📋 Histórico de Aluguéis</h2>
+            <h2>Histórico de Aluguéis</h2>
             <div id="tabela-historico">
                 <p class="sem-dados">Carregando...</p>
             </div>
